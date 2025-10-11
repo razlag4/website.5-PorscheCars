@@ -1,0 +1,19 @@
+/* Подключаем все три шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Michroma&family=Nata+Sans:wght@100..900&display=swap');
+
+/* Заголовки — например, техно-стиль (Michroma) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Michroma', sans-serif;
+  font-weight: 400;
+}
+
+/* Основной текст — современный шрифт Nata Sans */
+body, p, span, li, a, div {
+  font-family: 'Nata Sans', sans-serif;
+  font-weight: 400;
+}
+
+/* Если хочешь использовать Caveat Brush (рукописный стиль) где-то отдельно */
+.signature, .logo-text {
+  font-family: 'Caveat Brush', cursive;
+}
