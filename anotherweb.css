@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nata Sans', sans-serif;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  overflow-x: hidden;
+  background: #000000;
+  justify-content: center;
+  background-attachment: fixed;
+}
+
+
+
+#anotherwebphoto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 85vw;
+  height: 95vh;
+  object-fit: fill;
+  transform: translate(-50%, -50%);
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+

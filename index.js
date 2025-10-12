@@ -152,3 +152,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (models) observer.observe(models);
 });
+
+
+document.getElementById("changeLanguage").addEventListener("click", () => {
+  alert("Language settings are not available yet.");
+});
+
+document.getElementById("contactButton").addEventListener("click", () => {
+  alert("Contact form will be available soon.");
+});
+
+document.querySelectorAll(".social svg").forEach(icon => {
+  icon.addEventListener("mouseenter", () => {
+    icon.style.transform = "scale(1.2)";
+  });
+  icon.addEventListener("mouseleave", () => {
+    icon.style.transform = "scale(1)";
+  });
+});
+
+
+document.querySelectorAll('.car-card2').forEach(card => {
+  card.addEventListener('click', e => {
+    // Если клик был не по ссылке внутри карточки
+    if (!e.target.closest('a')) {
+      window.location.href = card.dataset.href;
+    }
+  });
+});
