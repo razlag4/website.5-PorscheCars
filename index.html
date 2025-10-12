@@ -92,23 +92,27 @@
     <div id="models">
       <h1 class="section-title">Your Porsche journey starts now.</h1>
 
-      <article class="model" data-model="911">
+        <div class="models-grid">
+
+      <article class="model left" data-model="911">
         <div class="image-wrapper">
           <img class="main-photo" src="Photos_video_blocks/911/porsche911.jpg" alt="Porsche 911">
-          <img class="center-photo" src="Photos_video_blocks/911/center911.png" alt="Porsche 911 logo">
+          <video class="model-video" id="video911" src="Photos_video_blocks/911/porsche911turbo.mp4" alt="Porsche 911 video" muted preload="none"></video>
+          <img class="center-photo" id="center911" src="https://cdn.ui.porsche.com/porsche-design-system/model-signatures/911.b68f913.svg" alt="Porsche 911 logo">
         </div>
         <p class="fuel">Gasoline</p>
         <p class="description">Iconic sports car with rear engine: 2 doors, 2+2 seats.</p>
-        <p class="price">From $132,300*</p>
+        <p name="anothercolor" class="price">From $132,300*</p>
         <svg class="arrow2" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 9H24M24 9L18 4M24 9L18 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </article>
 
-      <article class="model" data-model="718">
+      <article class="model right" data-model="718">
         <div class="image-wrapper">
-          <img class="main-photo" src="Photos_video_blocks/718/porsche 718.jpg" alt="Porsche 718">
-          <img class="center-photo" src="Photos_video_blocks/718/center718.png" alt="Porsche 718 logo">
+          <img class="main-photo" src="Photos_video_blocks/718/porsche718.png" alt="Porsche 718">
+          <video class="model-video" id="video718" src="Photos_video_blocks/718/porsche718.mp4" alt="Porsche 718 video" muted preload="none"></video>
+          <img class="center-photo" id="center718" src="https://cdn.ui.porsche.com/porsche-design-system/model-signatures/718.493a9e3.svg" alt="Porsche 718 logo">
         </div>
         <p class="fuel">Gasoline</p>
         <p class="description">Precise mid-engine sports car: 2 doors, 2 seats.</p>
@@ -118,10 +122,11 @@
         </svg>
       </article>
 
-      <article class="model" data-model="taycan">
+      <article class="model left" data-model="taycan">
         <div class="image-wrapper">
           <img class="main-photo" src="Photos_video_blocks/taycan/porsche taycan.jpg" alt="Porsche Taycan">
-          <img class="center-photo" src="Photos_video_blocks/taycan/centertaycan.png" alt="Porsche Taycan logo">
+          <video class="model-video" id="videoTaycan" src="Photos_video_blocks/taycan/taycan.mp4" alt="Porsche Taycan video" muted preload="none"></video>
+          <img class="center-photo" src="https://cdn.ui.porsche.com/porsche-design-system/model-signatures/taycan.df444c6.svg" alt="Porsche Taycan logo">
         </div>
         <p class="fuel">Electric</p>
         <p class="description">Electric sports car: 4 doors, up to 5 seats.</p>
@@ -131,12 +136,13 @@
         </svg>
       </article>
 
-      <article class="model" data-model="panamera">
+      <article class="model right" data-model="panamera">
         <div class="image-wrapper">
-          <img class="main-photo" src="Photos_video_blocks/panamera/panamera.jpg" alt="Porsche Panamera">
-          <img class="center-photo" src="Photos_video_blocks/panamera/centerpanamera.png" alt="Porsche Panamera logo">
+          <img class="main-photo" src="https://a.storyblok.com/f/338913/1280x1024/c06fa1b962/panamera-desktop_5-4.jpg/m/filters:format(webp):quality(80)" alt="Porsche Panamera">
+          <video class="model-video" id="videoPanamera" src="Photos_video_blocks/panamera/panamera.mp4" alt="Porsche Panamera video" muted preload="none"></video>
+          <img class="center-photo" src="https://cdn.ui.porsche.com/porsche-design-system/model-signatures/panamera.6dae809.svg" alt="Porsche Panamera logo">
         </div>
-        <p class="fuel">Hybrid</p>
+        <p name="fuelpanamera" class="fuel">Hybrid</p>
         <p class="description">Luxury sedan with high comfort: 4 doors, up to 5 seats.</p>
         <p class="price">From $110,110*</p>
         <svg class="arrow2" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,10 +150,11 @@
         </svg>
       </article>
 
-      <article class="model" data-model="macan">
+      <article class="model left" data-model="macan">
         <div class="image-wrapper">
-          <img class="main-photo" src="Photos_video_blocks/macan/macan.jpg" alt="Porsche Macan">
-          <img class="center-photo" src="Photos_video_blocks/macan/centermacan.png" alt="Porsche Macan logo">
+          <img class="main-photo" src="https://a.storyblok.com/f/338913/1280x1024/3debd00362/macan-desktop_5-4.jpg/m/filters:format(webp):quality(80)" alt="Porsche Macan">
+          <video class="model-video" id="videoMacan" src="Photos_video_blocks/macan/macan.mp4" alt="Porsche Macan video" muted preload="none"></video>
+          <img class="center-photo" src="https://cdn.ui.porsche.com/porsche-design-system/model-signatures/macan.a1844f4.svg" alt="Porsche Macan logo">
         </div>
         <p class="fuel">Gasoline</p>
         <p class="description">Sporty compact SUV: 4 doors, 5 seats.</p>
@@ -157,10 +164,11 @@
         </svg>
       </article>
 
-      <article class="model" data-model="cayenne">
+      <article class="model right" data-model="cayenne">
         <div class="image-wrapper">
-          <img class="main-photo" src="Photos_video_blocks/cayenne/cayenne.jpg" alt="Porsche Cayenne">
-          <img class="center-photo" src="Photos_video_blocks/cayenne/centercayenne.png" alt="Porsche Cayenne logo">
+          <img class="main-photo" src="Photos_video_blocks/cayenne/cayenne.jpeg" alt="Porsche Cayenne">
+          <video class="model-video" id="videoCayenne" src="Photos_video_blocks/cayenne/cayenne.mp4" alt="Porsche Cayenne video" muted preload="none"></video>
+          <img class="center-photo" id="centerCayenne" src="https://cdn.ui.porsche.com/porsche-design-system/model-signatures/cayenne.2556201.svg" alt="Porsche Cayenne logo">
         </div>
         <p class="fuel">Hybrid</p>
         <p class="description">Versatile SUV: 4 doors, up to 5 seats.</p>
@@ -169,7 +177,78 @@
           <path d="M2 9H24M24 9L18 4M24 9L18 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </article>
+      </div>
+      <p id="undermasivcar">*Manufacturer’s Suggested Retail Price. Excludes options; taxes; title; registration; delivery, processing and handling fee; dealer charges; potential tariffs. Dealer sets actual selling price.</p>
     </div>
+
+
+    <div id="porsche-center">
+  <div id="text-left">
+    <h1>Find Your Porsche Center</h1>
+    <p>
+      A Porsche Center, and your dream Porsche vehicle, may be closer than you think.<br>
+      Search our Porsche Center network for the location closest to you.
+    </p>
+    <button id="searchnow">Search now</button>
+  </div>
+
+  <img src="Photos_video/woman_with_man.png" id="right-photo" alt="womanwithman">
+</div>
+
+
+
+
+   <div id="YourZipCode">
+  <div id="zip-info">
+    <h2>Find your new or pre-owned Porsche.</h2>
+    <p>Making it easy to find your dream Porsche. Enter your location and browse the best<br>
+       car offers available near you.</p>
+    <input type="text" id="zipcode" name="zipcode" placeholder="Enter City or ZIP Code">
+  </div>
+
+  <img src="Photos_video/3carsphoto.png" alt="cars" id="cars-photo">
+</div>
+    </div>
+
+
+
+    <div id="Discover"> 
+
+      <h1 id="DiscoverText">Discover</h1>
+
+  <div id="carsbottom">
+      <div class="car-card2">
+        <img src="Photos_video/expphoto.jpg" alt="Porsche">
+        <div class="car-info2">
+          <p>Porsche Approved</p>
+          <svg class="arrow3" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 9H24M24 9L18 4M24 9L18 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="car-card2">
+        <img src="https://media.gqjapan.jp/photos/66c424e9eb4b2597dd52a023/1:1/w_1600%2Cc_limit/porsche-911-turbo-50th-anniversary-1.jpg" alt="Travel">
+        <div class="car-info2">
+          <p>Travel & Experience</p>
+          <svg class="arrow3" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 9H24M24 9L18 4M24 9L18 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="car-card2">
+        <img src="Photos_video/fastcar.jpg" alt="Fastcar">
+        <div class="car-info2">
+          <p>Motorsport Experience</p>
+          <svg class="arrow3" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 9H24M24 9L18 4M24 9L18 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    </div>
+    
 
   </main>
 

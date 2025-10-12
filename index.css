@@ -12,9 +12,11 @@ body {
   color: #f1f1f1;
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: white;
+   background: #ffffff;
+  transition: background 1.5s ease;
   background-attachment: fixed;
 }
+
 
 
 .header {
@@ -269,5 +271,572 @@ body {
 
 
 
+/* ====================================================
+   ПЕРЕПИСАННЫЙ CSS: Сохраняет твою структуру + добавляет
+   расширение карточек влево/вправо при наведении.
+   ==================================================== */
+
+/* === ОСНОВНОЙ КОНТЕЙНЕР === */
+#models {
+  width: 100%;
+  background: #ffffff;
+  color: #fff;
+  padding: 2rem 3rem;
+  font-family: "Porsche Next", "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === ЗАГОЛОВОК СЕКЦИИ === */
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #000000;
+}
+
+/* === СЕТКА КАРТОЧЕК ===
+   используем явные проценты для удобного пересчёта при hover */
+.models-grid {
+  width: 100%;
+  max-width: 1650px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 2.5rem;
+  justify-items: center;
+  align-items: start;
+  /* анимация изменения колонки при :has */
+  overflow: visible;
+  transition: grid-template-columns 420ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* Если наведён элемент в левой колонке — левая колонка расширяется,
+   правая сжимается (в сумме изменение 16%: левая 58% / правая 42%) */
+.models-grid:has(.model.left:hover) {
+  grid-template-columns: calc(50% + 8%) calc(50% - 8%);
+}
+
+/* Если наведён элемент в правой колонке — правая колонка расширяется */
+.models-grid:has(.model.right:hover) {
+  grid-template-columns: calc(50% - 8%) calc(50% + 8%);
+}
+
+/* === КАРТОЧКА МОДЕЛИ === */
+.model {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  /* трансформация — масштаб для общего увеличения (1.09) */
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), box-shadow 420ms ease;
+  will-change: transform;
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+/* Разные точки трансформации: 
+   left — растёт вправо (origin = left), right — растёт влево (origin = right) */
+.model.left  { transform-origin: left center;  }
+.model.right { transform-origin: right center; }
+
+/* Поведение при hover: общий масштаб 1.09 + приподнятие над соседями */
+.model.left:hover,
+.model.right:hover {
+  transform: scale(1.09); /* вертикально и горизонтально пропорционально */
+  z-index: 6;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+/* Немного ослабляем остальные карточки при наведении на любую */
+.models-grid:hover .model:not(:hover) {
+  transform: scale(0.985);
+  opacity: 0.96;
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease;
+}
+
+/* === ОБЕРТКА ИЗОБРАЖЕНИЯ === */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+/* === ГЛАВНОЕ ФОТО === */
+.main-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s ease;
+}
+
+/* при наведении сам фон-изображение слегка остаётся масштабированным/стабильным */
+.model:hover .main-photo {
+  transform: scale(1.00);
+}
+
+/* === ЭФФЕКТ ЗАТЕМНЕНИЯ ВНУТРИ КАРТОЧКИ === */
+.image-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.2) 40%);
+  z-index: 1;
+}
+
+.center-photo {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  filter: brightness(3000%) contrast(120%) drop-shadow(0 0 8px rgb(255, 255, 255));
+}
+
+.center-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
 
 
+#center911 {
+  width: 145px;
+}
+
+#center718 {
+  width: 145px;
+}
+
+
+#ExploreBottom {
+  background-color: red;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  z-index: 6;
+}
+
+/* === ГРАДИЕНТЫ === */
+.model::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  z-index: 1;
+}
+
+.model::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
+  z-index: 1;
+}
+
+/* === ТЕКСТОВЫЕ ЭЛЕМЕНТЫ === */
+.model p {
+  position: absolute;
+  left: 25px;
+  z-index: 2;
+  color: #fff;
+  margin: 0;
+}
+
+/* Стрелка — фиксирована в правом нижнем углу карточки */
+.model .arrow2 {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  z-index: 2;
+  width: 28px;
+  height: 18px;
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.model:hover .arrow2 {
+  transform: translateX(8px);
+  opacity: 1;
+}
+
+/* Тип топлива */
+.model .fuel {
+  bottom: 110px;
+  left: 25px;
+  position: absolute;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 14px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: #e0e0e0;
+}
+
+/* Описание */
+.model .description {
+  bottom: 70px;
+  left: 25px;
+  position: absolute;
+  font-size: 0.85rem;
+  color: #f1f1f1;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+/* Цена */
+.model .price {
+  bottom: 40px;
+  left: 25px;
+  position: absolute;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Мелкие корректировки поведения при фокусе/клавиатурном наведении */
+.model:focus,
+.model:active {
+  outline: none;
+  transform: scale(1.06);
+  z-index: 6;
+}
+
+/* --- Конец файла --- */
+
+
+
+.models-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 2%; /* постоянное расстояние между карточками */
+  transition: grid-template-columns 420ms cubic-bezier(.3,.8,.3,1);
+  align-items: stretch;
+}
+
+/* если навели на левую — она растёт, правая сжимается чуть больше */
+.models-grid:has(.model.left:hover) {
+  grid-template-columns: calc(50% + 3.5%) calc(50% - 4%);
+}
+
+/* если навели на правую — она растёт, левая сжимается чуть больше */
+.models-grid:has(.model.right:hover) {
+  grid-template-columns: calc(50% - 4%) calc(50% + 3.5%);
+}
+
+/* базовый стиль карточек */
+.model {
+  transition: transform 420ms cubic-bezier(.3,.8,.3,1),
+              scale 420ms cubic-bezier(.3,.8,.3,1);
+  transform-origin: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* левая карточка увеличивается вправо */
+.model.left:hover {
+  transform: scaleX(1.02);
+  transform-origin: left center;
+  z-index: 5;
+}
+
+/* правая карточка увеличивается влево */
+.model.right:hover {
+  transform: scaleX(1.02);
+  transform-origin: right center;
+  z-index: 5;
+}
+
+/* остальные не тускнеют */
+.models-grid:hover .model:not(:hover) {
+  transform: none;
+  opacity: 1;
+}
+
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper img.main-photo,
+.image-wrapper video.model-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+/* фото видно по умолчанию */
+.image-wrapper img.main-photo {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* видео скрыто по умолчанию */
+.image-wrapper video.model-video {
+  opacity: 0;
+  z-index: 0;
+}
+
+/* при наведении — фото исчезает, видео появляется */
+.image-wrapper:hover img.main-photo {
+  opacity: 0;
+  z-index: 0;
+}
+
+.image-wrapper:hover video.model-video {
+  opacity: 1;
+  z-index: 1;
+}
+
+#undermasivcar {
+  position: relative;
+  margin-top: 3rem;
+  color: rgb(43, 40, 40);
+  font-size: 14px;
+}
+
+
+#porsche-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d0d0f;
+  border-radius: 16px;
+  overflow: hidden;
+  color: white;
+  font-family: 'Porsche Next', sans-serif;
+  margin: 80px auto;
+  max-width: 1600px;
+  height: 525px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+#text-left {
+  flex: 0 0 45%;
+  padding: 80px;
+}
+
+#text-left h1 {
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+#text-left p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 35px;
+  color: #d0d0d0;
+}
+
+#searchnow {
+  background: white;
+  color: #000;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#searchnow:hover {
+  background: #9c9c9c;
+}
+
+#right-photo {
+  flex: 0 0 55%;
+  width: 55%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+#YourZipCode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  padding-left: 8%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#zip-info {
+  max-width: 45%;
+}
+
+#zip-info h2 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+#zip-info p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+#zipcode {
+  width: 100%;
+  max-width: 480px;
+  height: 55px;
+  font-size: 18px;
+  padding: 0 20px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#zipcode:focus {
+  border-color: #000;
+}
+
+#cars-photo {
+  width: 59%;
+  height: auto;
+  object-fit: contain;
+  object-position: right center;
+  margin-right: 0;
+}
+
+/* Общий контейнер Discover */
+#Discover {
+  padding: 60px 40px 100px;
+  background: #fff;
+  font-family: "Porsche Next", "Inter", "Poppins", sans-serif;
+  color: #111;
+  box-sizing: border-box;
+}
+
+/* Заголовок Discover */
+#DiscoverText {
+  text-align: center;
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: 0.5px;
+  margin-bottom: 50px;
+}
+
+/* Контейнер карточек */
+#carsbottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 55px;
+  max-width: 1350px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+/* Карточка */
+.car-card2 {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #222;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+/* Эффект наведения */
+.car-card2:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 50px rgba(0,0,0,0.18);
+}
+
+/* Изображение */
+.car-card2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+/* Увеличение изображения при наведении */
+.car-card2:hover img {
+  transform: scale(1.05);
+}
+
+/* Нижний блок с текстом и стрелкой */
+.car-info2 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.55) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  box-sizing: border-box;
+}
+
+/* Текст */
+.car-info2 p {
+  margin: 0;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+}
+
+/* Стрелка (SVG) */
+.arrow3 {
+  width: 34px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Анимация стрелки при hover */
+.car-card2:hover .arrow3 {
+  transform: translateX(6px);
+}
+
+
+
+body,
+#cars,
+#models {
+  background: #ffffff;
+  transition: background 0.9s ease-in-out; /* плавный переход */
+}

@@ -33,3 +33,122 @@ svgContainer.addEventListener('click', () => {
     isPaused = !isPaused;
   }, 200);
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const models = document.querySelectorAll('.model');
+
+  models.forEach(model => {
+    const video = model.querySelector('video.model-video');
+    const img = model.querySelector('img.main-photo');
+    if (!video || !img) return;
+
+    // базовые настройки видео
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+
+    // стили для видео
+    Object.assign(video.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      opacity: '0',
+      transition: 'opacity 0.4s ease',
+      zIndex: '0',
+      pointerEvents: 'none'
+    });
+
+    // стили для фото
+    Object.assign(img.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      opacity: '1',
+      transition: 'opacity 0.4s ease',
+      zIndex: '1',
+      pointerEvents: 'none'
+    });
+
+    model.style.position = 'relative';
+    model.style.overflow = 'hidden';
+
+    let isHovered = false;
+    let leaveTimeout;
+    let hoverTimeout;
+
+    model.addEventListener('mouseenter', () => {
+      clearTimeout(leaveTimeout);
+      clearTimeout(hoverTimeout);
+      isHovered = true;
+
+      // запускаем видео через 0.7 сек, если курсор всё ещё наведен
+      hoverTimeout = setTimeout(async () => {
+        if (!isHovered) return;
+        try {
+          video.currentTime = 0;
+          await video.play();
+          img.style.opacity = '0';
+          img.style.zIndex = '0';
+          video.style.opacity = '1';
+          video.style.zIndex = '1';
+        } catch (err) {
+          console.warn('Video play error:', err);
+        }
+      }, 385); // задержка 0.3 сек
+    });
+
+    model.addEventListener('mouseleave', () => {
+      isHovered = false;
+      clearTimeout(hoverTimeout);
+      leaveTimeout = setTimeout(() => {
+        if (!isHovered) {
+          video.pause();
+          video.currentTime = 0;
+          video.style.opacity = '0';
+          video.style.zIndex = '0';
+          img.style.opacity = '1';
+          img.style.zIndex = '1';
+        }
+      }, 100);
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const models = document.getElementById("models");
+  const cars = document.getElementById("cars");
+
+  // Плавные переходы для всех
+  [document.body, cars, models].forEach((el) => {
+    if (el) el.style.transition = "background-color 0.9s ease";
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Когда models в поле зрения
+          document.body.style.backgroundColor = "#000000";
+          if (cars) cars.style.backgroundColor = "#000000";
+          if (models) models.style.backgroundColor = "#000000";
+        } else {
+          // Когда models выходит
+          document.body.style.backgroundColor = "#ffffff";
+          if (cars) cars.style.backgroundColor = "#ffffff";
+          if (models) models.style.backgroundColor = "#ffffff";
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  if (models) observer.observe(models);
+});
